@@ -8,17 +8,22 @@ class SubtractionOperation: public Operation {
 public:
 
   SubtractionOperation(const Operation::Ptr &minuend, const Operation::Ptr &subtrahend) noexcept
-      : _minuend(minuend), _subtrahend(subtrahend) {
+      : minuend_(minuend), subtrahend_(subtrahend) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _minuend->evaluate() - _subtrahend->evaluate();
+    return minuend_->evaluate() - subtrahend_->evaluate();
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
+    minuend_->accept(v);
+    subtrahend_->accept(v);
   }
 
 private:
 
-  Operation::Ptr _minuend;
-  Operation::Ptr _subtrahend;
+  Operation::Ptr minuend_;
+  Operation::Ptr subtrahend_;
 
 };
 

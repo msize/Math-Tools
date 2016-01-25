@@ -7,17 +7,20 @@ class ConstOperation: public Operation {
 
 public:
 
-  ConstOperation(double value) noexcept
-      : _value(value) {
+  explicit ConstOperation(double value) noexcept
+      : value_(value) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _value;
+    return value_;
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
   }
 
 private:
 
-  double _value;
+  double value_;
 
 };
 

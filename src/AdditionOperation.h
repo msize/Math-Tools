@@ -8,17 +8,22 @@ class AdditionOperation: public Operation {
 public:
 
   AdditionOperation(const Operation::Ptr &increasing, const Operation::Ptr &increment) noexcept
-      : _increasing(increasing), _increment(increment) {
+      : increasing_(increasing), increment_(increment) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _increasing->evaluate() + _increment->evaluate();
+    return increasing_->evaluate() + increment_->evaluate();
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
+    increasing_->accept(v);
+    increment_->accept(v);
   }
 
 private:
 
-  Operation::Ptr _increasing;
-  Operation::Ptr _increment;
+  Operation::Ptr increasing_;
+  Operation::Ptr increment_;
 
 };
 

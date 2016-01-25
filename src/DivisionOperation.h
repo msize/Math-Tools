@@ -8,17 +8,22 @@ class DivisionOperation: public Operation {
 public:
 
   DivisionOperation(const Operation::Ptr &dividend, const Operation::Ptr &divisor) noexcept
-      : _dividend(dividend), _divisor(divisor) {
+      : dividend_(dividend), divisor_(divisor) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _dividend->evaluate() / _divisor->evaluate();
+    return dividend_->evaluate() / divisor_->evaluate();
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
+    dividend_->accept(v);
+    divisor_->accept(v);
   }
 
 private:
 
-  Operation::Ptr _dividend;
-  Operation::Ptr _divisor;
+  Operation::Ptr dividend_;
+  Operation::Ptr divisor_;
 
 };
 

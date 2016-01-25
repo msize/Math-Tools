@@ -2,6 +2,7 @@
 #define OPERATION_H_
 
 #include <memory>
+#include "Visitor.h"
 
 class Operation {
 
@@ -13,12 +14,16 @@ public:
     return std::make_shared<T>(t);
   }
 
-  Operation() noexcept {
-  }
   virtual ~Operation() noexcept {
   }
 
   virtual double evaluate() const noexcept = 0;
+  virtual void accept(Visitor &v) const = 0;
+
+protected:
+
+  Operation() noexcept {
+  }
 
 };
 

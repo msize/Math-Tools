@@ -8,16 +8,20 @@ class BracketsOperation: public Operation {
 public:
 
   BracketsOperation(const Operation::Ptr &expression) noexcept
-      : _expression(expression) {
+      : expression_(expression) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _expression->evaluate();
+    return expression_->evaluate();
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
+    expression_->accept(v);
   }
 
 private:
 
-  Operation::Ptr _expression;
+  Operation::Ptr expression_;
 
 };
 

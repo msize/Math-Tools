@@ -8,17 +8,22 @@ class MultiplicationOperation: public Operation {
 public:
 
   MultiplicationOperation(const Operation::Ptr &multiplier, const Operation::Ptr &multiplicand) noexcept
-    : _multiplier(multiplier), _multiplicand(multiplicand) {
+    : multiplier_(multiplier), multiplicand_(multiplicand) {
   }
 
   virtual double evaluate() const noexcept override {
-    return _multiplier->evaluate() * _multiplicand->evaluate();
+    return multiplier_->evaluate() * multiplicand_->evaluate();
+  }
+  virtual void accept(Visitor &v) const override {
+    v.visit(*this);
+    multiplier_->accept(v);
+    multiplicand_->accept(v);
   }
 
 private:
 
-  Operation::Ptr _multiplier;
-  Operation::Ptr _multiplicand;
+  Operation::Ptr multiplier_;
+  Operation::Ptr multiplicand_;
 
 };
 
