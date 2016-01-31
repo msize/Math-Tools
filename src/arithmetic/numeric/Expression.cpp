@@ -2,7 +2,10 @@
 #include "Expression.h"
 #include "AllOperations.h"
 
-Arithmetic::Ptr Expression::makeOperation(const std::string& expression) {
+namespace arithmetic {
+namespace numeric {
+
+Numeric::Ptr Expression::makeOperation(const std::string& expression) {
   static const std::string seporators = " \n";
   static const std::string singleTokens = "()+-*/";
   static const std::string multipleTokens = "0.123456789";
@@ -26,7 +29,7 @@ bool Expression::isHighLevelOperation(const std::string& str) const {
   return false;
 }
 
-Arithmetic::Ptr Expression::makeLowLevelOperation(const Arithmetic::Ptr &left, const Arithmetic::Ptr &right, const std::string &token) const {
+Numeric::Ptr Expression::makeLowLevelOperation(const Numeric::Ptr &left, const Numeric::Ptr &right, const std::string &token) const {
   if ("+" == token)
     return Addition::make(left, right);
   else if ("-" == token)
@@ -35,7 +38,7 @@ Arithmetic::Ptr Expression::makeLowLevelOperation(const Arithmetic::Ptr &left, c
   return nullptr;
 }
 
-Arithmetic::Ptr Expression::makeHighLevelOperation(const Arithmetic::Ptr &left, const Arithmetic::Ptr &right, const std::string &token) const {
+Numeric::Ptr Expression::makeHighLevelOperation(const Numeric::Ptr &left, const Numeric::Ptr &right, const std::string &token) const {
   if ("*" == token)
     return Multiplication::make(left, right);
   else if ("/" == token)
@@ -44,14 +47,17 @@ Arithmetic::Ptr Expression::makeHighLevelOperation(const Arithmetic::Ptr &left, 
   return nullptr;
 }
 
-Arithmetic::Ptr Expression::makeBracketsOperation(const Arithmetic::Ptr &expression) const {
+Numeric::Ptr Expression::makeBracketsOperation(const Numeric::Ptr &expression) const {
   return Brackets::make(expression);
 }
 
-Arithmetic::Ptr Expression::makeConstOperation(const std::string &token) const {
+Numeric::Ptr Expression::makeConstOperation(const std::string &token) const {
   return Const::make(std::stod(token));
 }
 
 void Expression::raiseBadToken(const std::string &token) const {
   throw std::logic_error(std::string("Bad token '").append(token).append("'"));
 }
+
+} /* namespace numeric */
+} /* namespace arithmetic */

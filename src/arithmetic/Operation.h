@@ -1,7 +1,9 @@
-#ifndef OPERATION_H_
-#define OPERATION_H_
+#ifndef ARITHMETIC_OPERATION_H_
+#define ARITHMETIC_OPERATION_H_
 
 #include <memory>
+
+namespace arithmetic {
 
 class Visitor;
 
@@ -25,4 +27,6 @@ protected:
 
 };
 
-#endif /* OPERATION_H_ */
+} /* namespace arithmetic */
+
+#endif /* ARITHMETIC_OPERATION_H_ */

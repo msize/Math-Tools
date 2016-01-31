@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include "Tokenizer.h"
 
+namespace arithmetic {
+
 Tokenizer::Tokenizer(const std::string &expression,
           const std::string &seporators,
           const std::string &singleTokens,
@@ -21,3 +23,5 @@ std::string Tokenizer::getNextToken() {
   pos_ = expression_.find_first_not_of(seporators_, epos);
   return expression_.substr(bpos, epos - bpos);
 }
+
+} /* namespace arithmetic */

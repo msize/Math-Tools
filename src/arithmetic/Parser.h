@@ -1,9 +1,11 @@
-#ifndef PARSER_H_
-#define PARSER_H_
+#ifndef ARITHMETIC_PARSER_H_
+#define ARITHMETIC_PARSER_H_
 
 #include <string>
 #include "Operation.h"
 #include "Tokenizer.h"
+
+namespace arithmetic {
 
 template <typename R>
 class Parser {
@@ -53,4 +55,6 @@ private:
 
 };
 
-#endif /* PARSER_H_ */
+} /* namespace arithmetic */
+
+#endif /* ARITHMETIC_PARSER_H_ */

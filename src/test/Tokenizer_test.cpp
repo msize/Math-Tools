@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
 #include <exception>
-#include "../Tokenizer.h"
+#include "../arithmetic/Tokenizer.h"
 
 class TokenizerTest: public ::testing::Test {
 
@@ -13,6 +13,8 @@ protected:
   }
 
 };
+
+using arithmetic::Tokenizer;
 
 TEST_F(TokenizerTest, NextGetterFine) {
   static const std::string expression = "(2.2 + 2.2) -\n 2.2 * 2.2";

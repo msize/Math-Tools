@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Expression.h"
+
+#include "arithmetic/numeric/Expression.h"
 
 void printUsage(const char *programName) {
   std::cout << "Usage:\n  "
@@ -10,13 +11,13 @@ void printUsage(const char *programName) {
             << " '2 + 2 * 2'\n";
 }
 
-int main(int argv, char *argc[]) {
-  if (2 != argv) {
-    printUsage(argc[0]);
+int main(int argc, char *argv[]) {
+  if (2 != argc) {
+    printUsage(argv[0]);
     return 1;
   }
   try {
-    auto operation = Expression().makeOperation(argc[1]);
+    auto operation = arithmetic::numeric::Expression().makeOperation(argv[1]);
     std::cout << "Result: "
               << operation->evaluate()
               << '\n';

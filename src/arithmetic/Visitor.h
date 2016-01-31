@@ -1,0 +1,24 @@
+#ifndef ARITHMETIC_VISITOR_H_
+#define ARITHMETIC_VISITOR_H_
+
+#include "numeric/AllOperations.h"
+
+namespace arithmetic {
+
+class Visitor {
+
+public:
+
+  virtual ~Visitor() =default;
+  virtual void visit(const numeric::Addition &) = 0;
+  virtual void visit(const numeric::Brackets &) = 0;
+  virtual void visit(const numeric::Const &) = 0;
+  virtual void visit(const numeric::Division &) = 0;
+  virtual void visit(const numeric::Multiplication &) = 0;
+  virtual void visit(const numeric::Subtraction &) = 0;
+
+};
+
+} /* namespace arithmetic */
+
+#endif /* ARITHMETIC_VISITOR_H_ */

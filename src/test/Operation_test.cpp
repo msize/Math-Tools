@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../AllOperations.h"
+#include "../arithmetic/numeric/AllOperations.h"
 
 class OperationTest: public ::testing::Test {
 
@@ -11,6 +11,13 @@ protected:
   }
 
 };
+
+using arithmetic::numeric::Addition;
+using arithmetic::numeric::Brackets;
+using arithmetic::numeric::Const;
+using arithmetic::numeric::Division;
+using arithmetic::numeric::Multiplication;
+using arithmetic::numeric::Subtraction;
 
 TEST_F(OperationTest, Addition) {
   static const double increasing = 3.3;

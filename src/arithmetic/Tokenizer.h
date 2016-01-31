@@ -1,7 +1,9 @@
-#ifndef TOKENIZER_H_
-#define TOKENIZER_H_
+#ifndef ARITHMETIC_TOKENIZER_H_
+#define ARITHMETIC_TOKENIZER_H_
 
 #include <string>
+
+namespace arithmetic {
 
 class Tokenizer {
 
@@ -26,4 +28,6 @@ private:
 
 };
 
-#endif /* TOKENIZER_H_ */
+} /* namespace arithmetic */
+
+#endif /* ARITHMETIC_TOKENIZER_H_ */

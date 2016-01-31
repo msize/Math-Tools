@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
-#include "../Expression.h"
-#include "../SyntaxTree.h"
+#include "../arithmetic/numeric/Expression.h"
+#include "../arithmetic/SyntaxTree.h"
 
 class ExpressionTest: public ::testing::Test {
 
@@ -13,6 +13,9 @@ protected:
   }
 
 };
+
+using arithmetic::numeric::Expression;
+using arithmetic::SyntaxTree;
 
 TEST_F(ExpressionTest, parseExpression1) {
   static const std::string expression = " 2 * 2 + 2";
