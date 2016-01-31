@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <string>
+#include <exception>
 #include "../Tokenizer.h"
 
 class TokenizerTest: public ::testing::Test {
@@ -39,5 +40,5 @@ TEST_F(TokenizerTest, NextGetterLoose) {
   Tokenizer t(expression, seporators, singleTokens, multipleTokens);
   EXPECT_STREQ("999.9", t.getNextToken().c_str());
   EXPECT_STREQ("-", t.getNextToken().c_str());
-  EXPECT_THROW(t.getNextToken(), Tokenizer::Exception);
+  EXPECT_THROW(t.getNextToken(), std::logic_error);
 }

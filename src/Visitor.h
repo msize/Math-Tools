@@ -1,30 +1,19 @@
 #ifndef VISITOR_H_
 #define VISITOR_H_
 
-class AdditionOperation;
-class BracketsOperation;
-class ConstOperation;
-class DivisionOperation;
-class MultiplicationOperation;
-class SubtractionOperation;
+#include "AllOperations.h"
 
 class Visitor {
 
 public:
 
-  virtual ~Visitor() noexcept {
-  }
-  virtual void visit(const AdditionOperation &) = 0;
-  virtual void visit(const BracketsOperation &) = 0;
-  virtual void visit(const ConstOperation &) = 0;
-  virtual void visit(const DivisionOperation &) = 0;
-  virtual void visit(const MultiplicationOperation &) = 0;
-  virtual void visit(const SubtractionOperation &) = 0;
-
-protected:
-
-  Visitor() noexcept {
-  }
+  virtual ~Visitor() =default;
+  virtual void visit(const Addition &) = 0;
+  virtual void visit(const Brackets &) = 0;
+  virtual void visit(const Const &) = 0;
+  virtual void visit(const Division &) = 0;
+  virtual void visit(const Multiplication &) = 0;
+  virtual void visit(const Subtraction &) = 0;
 
 };
 

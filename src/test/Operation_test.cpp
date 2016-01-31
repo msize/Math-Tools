@@ -12,64 +12,60 @@ protected:
 
 };
 
-TEST_F(OperationTest, AdditionOperation) {
-  static const double firstAddend = 3.3;
-  static const double secondAddend = 4.4;
-  static const double result = firstAddend + secondAddend;
-  auto s = Operation::makePtr(AdditionOperation(
-      Operation::makePtr(ConstOperation(firstAddend)),
-      Operation::makePtr(ConstOperation(secondAddend))
-      ));
+TEST_F(OperationTest, Addition) {
+  static const double increasing = 3.3;
+  static const double increment = 4.4;
+  static const double result = increasing + increment;
+  auto s = Addition::make(
+      Const::make(increasing),
+      Const::make(increment));
   EXPECT_DOUBLE_EQ(result, s->evaluate());
 }
 
-TEST_F(OperationTest, BracketsOperation) {
+TEST_F(OperationTest, Brackets) {
   static const double result = 9.9;
-  auto b = Operation::makePtr(BracketsOperation(Operation::makePtr(ConstOperation(result))));
+  auto b = Const::make(result);
   EXPECT_DOUBLE_EQ(result, b->evaluate());
 }
 
-TEST_F(OperationTest, DivisionOperation) {
+TEST_F(OperationTest, Division) {
   static const double dividend = 7.14;
   static const double divisor = 2.1;
   static const double result = dividend / divisor;
-  auto d = Operation::makePtr(DivisionOperation(
-      Operation::makePtr(ConstOperation(dividend)),
-      Operation::makePtr(ConstOperation(divisor))
-      ));
+  auto d = Division::make(
+      Const::make(dividend),
+      Const::make(divisor));
   EXPECT_DOUBLE_EQ(result, d->evaluate());
 }
 
-TEST_F(OperationTest, MultiplicationOperation) {
+TEST_F(OperationTest, Multiplication) {
   static const double multiplier = 5.5;
   static const double multiplicand = 3.3;
   static const double result = multiplier * multiplicand;
-  auto m = Operation::makePtr(MultiplicationOperation(
-      Operation::makePtr(ConstOperation(multiplier)),
-      Operation::makePtr(ConstOperation(multiplicand))
-      ));
+  auto m = Multiplication::make(
+      Const::make(multiplier),
+      Const::make(multiplicand));
   EXPECT_DOUBLE_EQ(result, m->evaluate());
 }
 
-TEST_F(OperationTest, SubtractionOperation) {
+TEST_F(OperationTest, Subtraction) {
   static const double minuend = 8.7;
   static const double subtrahend = 9.9;
   static const double result = minuend - subtrahend;
-  auto s = Operation::makePtr(SubtractionOperation(
-      Operation::makePtr(ConstOperation(minuend)),
-      Operation::makePtr(ConstOperation(subtrahend))
-      ));
+  auto s = Subtraction::make(
+      Const::make(minuend),
+      Const::make(subtrahend));
   EXPECT_DOUBLE_EQ(result, s->evaluate());
 }
 
-TEST_F(OperationTest, CombinationOperation) {
+TEST_F(OperationTest, Combination) {
   static const double v = 2.2;
   static const double result = v - (v + v * v) / v;
-  auto c = Operation::makePtr(ConstOperation(v));
-  auto m = Operation::makePtr(MultiplicationOperation(c, c));
-  auto a = Operation::makePtr(AdditionOperation(c, m));
-  auto b = Operation::makePtr(BracketsOperation(a));
-  auto d = Operation::makePtr(DivisionOperation(b, c));
-  auto s = Operation::makePtr(SubtractionOperation(c, d));
+  auto c = Const::make(v);
+  auto m = Multiplication::make(c, c);
+  auto a = Addition::make(c, m);
+  auto b = Brackets::make(a);
+  auto d = Division::make(b, c);
+  auto s = Subtraction::make(c, d);
   EXPECT_DOUBLE_EQ(result, s->evaluate());
 }

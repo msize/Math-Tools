@@ -1,21 +1,23 @@
+#include <stdexcept>
 #include "Tokenizer.h"
-#include <algorithm>
 
 Tokenizer::Tokenizer(const std::string &expression,
           const std::string &seporators,
           const std::string &singleTokens,
           const std::string &multipleTokens)
-    : m_expression(expression),
-      m_seporators(seporators),
-      m_singleTokens(singleTokens),
-      m_multipleTokens(multipleTokens) {
+    : expression_(expression),
+      seporators_(seporators),
+      singleTokens_(singleTokens),
+      multipleTokens_(multipleTokens) {
+  pos_ = expression_.find_first_not_of(seporators_, 0);
 }
 
 std::string Tokenizer::getNextToken() {
-  auto pos = m_expression.find_first_not_of(m_seporators, m_pos);
-  m_pos = pos + ((std::string::npos == m_singleTokens.find_first_of(m_expression.at(pos))) ? 0 : 1);
-  m_pos = (pos == m_pos) ? m_expression.find_first_not_of(m_multipleTokens, pos) : m_pos;
-  if (pos == m_pos && !done())
-    throw Exception(m_pos);
-  return m_expression.substr(pos, m_pos - pos);
+  auto bpos = pos_;
+  auto epos = bpos + ((std::string::npos == singleTokens_.find_first_of(expression_.at(bpos))) ? 0 : 1);
+  epos = (epos == bpos) ? expression_.find_first_not_of(multipleTokens_, bpos) : epos;
+  if (epos == bpos && !done())
+    throw std::logic_error(std::string("Bad token in position: ").append(std::to_string(pos_)));
+  pos_ = expression_.find_first_not_of(seporators_, epos);
+  return expression_.substr(bpos, epos - bpos);
 }

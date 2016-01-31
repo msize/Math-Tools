@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Parser.h"
+#include "Expression.h"
 
 void printUsage(const char *programName) {
   std::cout << "Usage:\n  "
@@ -15,7 +15,14 @@ int main(int argv, char *argc[]) {
     printUsage(argc[0]);
     return 1;
   }
-  Parser parser(argc[1]);
-  std::cout << parser.getVal() << '\n';
+  try {
+    auto operation = Expression().makeOperation(argc[1]);
+    std::cout << "Result: "
+              << operation->evaluate()
+              << '\n';
+  } catch (std::exception &e) {
+    std::cout << e.what()
+              << '\n';
+  }
   return 0;
 }
