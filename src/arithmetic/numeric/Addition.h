@@ -16,7 +16,7 @@ public:
 
 private:
 
-  Addition(const Operation::Ptr &increasing, const Operation::Ptr &increment) noexcept;
+  Addition(const Numeric::Ptr &increasing, const Numeric::Ptr &increment) noexcept;
   Numeric::Ptr increasing_;
   Numeric::Ptr increment_;
 

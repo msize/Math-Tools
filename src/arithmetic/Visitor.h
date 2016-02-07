@@ -2,6 +2,7 @@
 #define ARITHMETIC_VISITOR_H_
 
 #include "numeric/AllOperations.h"
+#include "boolean/AllOperations.h"
 
 namespace arithmetic {
 
@@ -16,6 +17,10 @@ public:
   virtual void visit(const numeric::Division &) = 0;
   virtual void visit(const numeric::Multiplication &) = 0;
   virtual void visit(const numeric::Subtraction &) = 0;
+  virtual void visit(const boolean::And &) =0;
+  virtual void visit(const boolean::Brackets &) =0;
+  virtual void visit(const boolean::Const &) =0;
+  virtual void visit(const boolean::Or &) =0;
 
 };
 

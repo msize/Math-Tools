@@ -16,6 +16,10 @@ public:
   virtual void visit(const numeric::Division &) override;
   virtual void visit(const numeric::Multiplication &) override;
   virtual void visit(const numeric::Subtraction &) override;
+  virtual void visit(const boolean::And &) override;
+  virtual void visit(const boolean::Brackets &) override;
+  virtual void visit(const boolean::Const &) override;
+  virtual void visit(const boolean::Or &) override;
   std::string result() const;
 
 private:

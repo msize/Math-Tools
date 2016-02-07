@@ -22,6 +22,10 @@ public:
       std::string token = tokenizer.getNextToken();
       if ("(" == token) {
         ((left) ? right : left) = makeBracketsOperation(makeOperation(tokenizer));
+        if (!highLevelOperation.empty()) {
+          left = makeHighLevelOperation(left, right, highLevelOperation);
+          highLevelOperation.clear();
+        }
       } else if (")" == token) {
         break;
       } else if (isHighLevelOperation(token)) {

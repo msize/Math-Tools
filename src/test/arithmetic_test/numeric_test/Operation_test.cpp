@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../arithmetic/numeric/AllOperations.h"
+#include "../../../arithmetic/numeric/AllOperations.h"
 
 class OperationTest: public ::testing::Test {
 

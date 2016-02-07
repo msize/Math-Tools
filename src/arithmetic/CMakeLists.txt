@@ -5,3 +5,4 @@ set(arithmetic_SOURCES
 )
 add_library(arithmetic STATIC ${arithmetic_SOURCES})
 add_subdirectory(numeric)
+add_subdirectory(boolean)

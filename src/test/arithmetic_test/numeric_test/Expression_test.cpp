@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
-#include "../arithmetic/numeric/Expression.h"
-#include "../arithmetic/SyntaxTree.h"
+#include "../../../arithmetic/numeric/Expression.h"
+#include "../../../arithmetic/SyntaxTree.h"
 
 class ExpressionTest: public ::testing::Test {
 
