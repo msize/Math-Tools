@@ -5,5 +5,5 @@ set(test_SOURCES
   Operation_test.cpp
 )
 add_executable(numeric_test ${test_SOURCES})
-target_link_libraries(numeric_test ${GTEST_LIBRARIES} numeric)
+target_link_libraries(numeric_test ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} numeric)
 add_test(numeric_test numeric_test)

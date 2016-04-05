@@ -5,7 +5,7 @@ set(test_SOURCES
   Variable_test.cpp
 )
 add_executable(arithmetic_test ${test_SOURCES})
-target_link_libraries(arithmetic_test ${GTEST_LIBRARIES} arithmetic)
+target_link_libraries(arithmetic_test ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} arithmetic)
 add_test(arithmetic_test arithmetic_test)
 add_subdirectory(boolean_test)
 add_subdirectory(numeric_test)
